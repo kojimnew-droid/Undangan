@@ -13,6 +13,7 @@
             --gold: #d4af37;
             --charcoal: #1a1a1a;
             --cream: #f9f4e8;
+            --white: #ffffff;
         }
 
         * { box-sizing: border-box; scroll-behavior: smooth; }
@@ -27,7 +28,7 @@
             border-bottom: 5px solid var(--gold);
         }
         .hero h1 { font-family: 'Great Vibes', cursive; font-size: 5rem; margin: 10px 0; color: var(--gold); }
-        .hero p { letter-spacing: 3px; font-weight: 300; }
+        .hero p { letter-spacing: 3px; font-weight: 300; text-transform: uppercase; }
 
         /* Section Styling */
         .section { padding: 80px 20px; max-width: 800px; margin: 0 auto; }
@@ -43,13 +44,17 @@
         .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 5px; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         /* RSVP / Buku Kehadiran */
-        .rsvp-form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--gold); }
+        .rsvp-form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--gold); margin-bottom: 30px; }
         input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-family: 'Montserrat', sans-serif; }
         .btn { background: var(--dark-gold); color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-weight: 600; width: 100%; transition: 0.3s; }
         .btn:hover { background: var(--charcoal); color: var(--gold); }
 
+        /* Daftar Pesan */
+        #daftarPesan { margin-top: 20px; text-align: left; max-height: 400px; overflow-y: auto; padding: 5px; }
+        .pesan-card { background: white; padding: 15px; margin-bottom: 10px; border-radius: 5px; border-left: 5px solid var(--gold); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+
         /* Digital Wallet / Gift */
-        .gift-card { background: var(--charcoal); color: var(--white); padding: 30px; border-radius: 10px; color: white; margin-top: 20px; }
+        .gift-card { background: var(--charcoal); color: white; padding: 30px; border-radius: 10px; margin-top: 20px; }
         .bank-info { margin: 20px 0; padding: 15px; border: 1px dashed var(--gold); border-radius: 8px; }
         .bank-info h3 { color: var(--gold); margin: 0; font-size: 1.2rem; }
 
@@ -62,7 +67,7 @@
 <body>
 
     <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
     </audio>
     <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
 
@@ -86,27 +91,28 @@
     <section class="section">
         <h2>Galeri Momen</h2>
         <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1594132009295-8278297b77d6?auto=format&fit=crop&q=80&w=600" alt="Prewedding 1">
-            <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600" alt="Prewedding 2">
-            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Prewedding 3">
+            <img src="https://images.unsplash.com/photo-1594132009295-8278297b77d6?auto=format&fit=crop&q=80&w=600" alt="Foto 1">
+            <img src="https://images.unsplash.com/photo-1510076857177-7470076d4098?auto=format&fit=crop&q=80&w=600" alt="Foto 2">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Foto 3">
         </div>
     </section>
 
     <section class="section">
         <h2>Buku Kehadiran</h2>
         <div class="rsvp-form">
-            <p>Konfirmasi Kehadiran Anda</p>
             <form id="rsvpForm">
-                <input type="text" placeholder="Nama Lengkap" required>
-                <select required>
+                <input type="text" id="namaTamu" placeholder="Nama Lengkap" required>
+                <select id="statusHadir" required>
                     <option value="">Konfirmasi Kehadiran</option>
                     <option value="Hadir">Hadir</option>
                     <option value="Tidak Hadir">Tidak Hadir</option>
                 </select>
-                <textarea placeholder="Ucapan Doa & Harapan" rows="4"></textarea>
+                <textarea id="pesanTamu" placeholder="Ucapan Doa & Harapan" rows="4" required></textarea>
                 <button type="submit" class="btn">Kirim Pesan</button>
             </form>
         </div>
+        <div id="daftarPesan">
+            </div>
     </section>
 
     <section class="section">
@@ -115,24 +121,27 @@
         <div class="gift-card">
             <div class="bank-info">
                 <h3>BCA</h3>
-                <p>No. Rekening: 1234567890</p>
+                <p>No. Rekening: [Masukkan No Rek]</p>
                 <p>A/N: Garan / Reni</p>
             </div>
             <div class="bank-info">
                 <h3>ShopeePay</h3>
-                <p>No. HP: 0812-3456-7890</p>
+                <p>No. HP: [Masukkan No HP]</p>
                 <p>A/N: Reni</p>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 40px; background: var(--charcoal); color: var(--gold);">
+    <footer style="padding: 60px; background: var(--charcoal); color: var(--gold);">
         <p>Sampai Jumpa di Hari Bahagia Kami</p>
-        <p style="font-family: 'Great Vibes'; font-size: 2rem;">Garan & Reni</p>
+        <p style="font-family: 'Great Vibes'; font-size: 2.5rem;">Garan & Reni</p>
     </footer>
 
     <script>
-        // COUNTDOWN LOGIC
+        // LINK GOOGLE APPS SCRIPT MILIKMU
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxXdAr0KfGMTHvJeMEhIEFbMIKa5E2UZjvdZAbzxNgW_Qcs05GYMbghLgMPC_Evk2pflQ/exec';
+
+        // 1. COUNTDOWN LOGIC (Target: 1 April 2026)
         const targetDate = new Date("April 1, 2026 09:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -143,26 +152,78 @@
             document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
         }, 1000);
 
-        // MUSIC LOGIC
+        // 2. MUSIC LOGIC
         const music = document.getElementById("bgMusic");
         const btn = document.getElementById("musicBtn");
         function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                btn.innerHTML = "⏸️";
-            } else {
-                music.pause();
-                btn.innerHTML = "🎵";
-            }
+            if (music.paused) { music.play(); btn.innerHTML = "⏸️"; } 
+            else { music.pause(); btn.innerHTML = "🎵"; }
         }
 
-        // RSVP FORM LOGIC
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        // 3. BUKU KEHADIRAN & GOOGLE SHEETS LOGIC
+        const rsvpForm = document.getElementById('rsvpForm');
+        const daftarPesan = document.getElementById('daftarPesan');
+
+        function ambilPesan() {
+            daftarPesan.innerHTML = "<p>Memuat ucapan...</p>";
+            fetch(scriptURL)
+                .then(res => res.json())
+                .then(data => {
+                    daftarPesan.innerHTML = "";
+                    if (data.length > 0) {
+                        data.reverse().forEach(item => {
+                            const div = document.createElement('div');
+                            div.className = "pesan-card";
+                            div.innerHTML = `
+                                <strong>${item.nama}</strong> 
+                                <span style="font-size:0.7rem; background:#eee; padding:2px 5px; border-radius:3px; margin-left:10px;">${item.status}</span>
+                                <p style="margin: 5px 0 0 0; font-style: italic; font-size: 0.9rem;">"${item.pesan}"</p>
+                            `;
+                            daftarPesan.appendChild(div);
+                        });
+                    } else {
+                        daftarPesan.innerHTML = "<p>Belum ada ucapan.</p>";
+                    }
+                })
+                .catch(err => {
+                    daftarPesan.innerHTML = "<p>Gagal memuat ucapan.</p>";
+                    console.error(err);
+                });
+        }
+
+        ambilPesan();
+
+        rsvpForm.addEventListener('submit', e => {
             e.preventDefault();
-            alert('Terima kasih atas konfirmasinya!');
-            this.reset();
+            const btnSimpan = rsvpForm.querySelector('button');
+            btnSimpan.innerText = "Mengirim...";
+            btnSimpan.disabled = true;
+
+            const dataBaru = {
+                nama: document.getElementById('namaTamu').value,
+                status: document.getElementById('statusHadir').value,
+                pesan: document.getElementById('pesanTamu').value
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(dataBaru)
+            })
+            .then(res => {
+                alert('Ucapan Anda telah terkirim!');
+                btnSimpan.innerText = "Kirim Pesan";
+                btnSimpan.disabled = false;
+                rsvpForm.reset();
+                ambilPesan();
+            })
+            .catch(error => {
+                alert('Gagal mengirim pesan.');
+                btnSimpan.innerText = "Kirim Pesan";
+                btnSimpan.disabled = false;
+                console.error('Error!', error.message);
+            });
         });
     </script>
 </body>
-        </html>
-    
+    </html>
+                    
